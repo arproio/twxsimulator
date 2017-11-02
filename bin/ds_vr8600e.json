@@ -1,0 +1,15 @@
+{
+    "ServerLocation": "gateway.desheng.io",
+    "Port": 443,
+    "Security": true,
+    "AppKey": "84ce8ad3-e081-4d01-9af0-f6fef4156362",
+    "ThingTemplate": "TT_VS_RTTFT_VR8600E_V_0_0_1",
+    "ThingNamePrefix": "VR8600E_Simulated_",
+	"StartDeviceNumber": 1,
+	"EndDeviceNumber": 5,
+	"ScanRate": 10000,
+	"ValueStream":"VS_VR8600-E",
+	"className":"com.ptc.techsales.edge.SimulatedVR8600E",
+    "param_lifetimecycle": 1,
+    "param_productcount": 1
+}

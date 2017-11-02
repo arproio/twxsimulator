@@ -1,0 +1,11 @@
+{
+    "ServerLocation": "gateway.desheng.io",
+    "Port": 443,
+    "Security": true,
+    "AppKey": "4532513e-e50c-4de6-b68b-c0f3223efc60",
+    "ThingTemplate": "TT_RTTFT_8600E_V_0_0_1_DS",
+    "ThingNamePrefix": "Simulated_8600E_",
+	"StartDeviceNumber": 1,
+	"EndDeviceNumber": 20,
+	"ScanRate": 4000	
+}

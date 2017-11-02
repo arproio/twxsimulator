@@ -1,0 +1,15 @@
+{
+    "ServerLocation": "device1-dev.digital.sealedair.com",
+    "Port": 443,
+    "Security": true,
+    "AppKey": "8212ffee-837f-4035-904e-ad5e93fdaab1",
+    "ThingTemplate": "TT_VS_RTTFT_VR86001X",
+    "ThingNamePrefix": "VR86001X_Simulated_",
+	"StartDeviceNumber": 1,
+	"EndDeviceNumber": 5,
+	"ScanRate": 10000,
+	"ValueStream":"VS_VR8600-1X",
+	"className":"com.ptc.techsales.edge.SimulatedVR86001X",
+    "param_lifetimecycles": 66164,
+    "param_productcount": 60363
+}

@@ -1,0 +1,14 @@
+{
+    "ServerLocation": "gateway.desheng.io",
+    "Port": 443,
+    "Security": true,
+    "AppKey": "84ce8ad3-e081-4d01-9af0-f6fef4156362",
+    "ThingTemplate": "TT_VPP3002",
+    "ThingNamePrefix": "VPP_Simulated_",
+	"StartDeviceNumber": 1,
+	"EndDeviceNumber": 5,
+	"ScanRate": 2000,
+	"ValueStream":"VS_VPP3002",
+	"className":"com.ptc.techsales.edge.SimulatedVPP",
+	"param_totalpackcount":20647
+}

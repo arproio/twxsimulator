@@ -1,0 +1,17 @@
+{
+    "ServerLocation": "device1-dev.digital.sealedair.com",
+    "Port": 443,
+    "Security": true,
+    "AppKey": "8212ffee-837f-4035-904e-ad5e93fdaab1",
+    "ThingTemplate": "TT_VS_RTTFT_VS95TS_V_0_0_1",
+    "ThingNamePrefix": "VS_VS95TS_Simulated_",
+	"StartDeviceNumber": 1,
+	"EndDeviceNumber": 5,
+	"ScanRate": 10000,
+	"ValueStream":"VS_VS95TS",
+	"className":"com.ptc.techsales.edge.SimulatedVS95TS",
+    "param_productcount": 44087,
+    "param_lifetimecycles":44087,
+    "param_vaccycletime":44087
+
+}
