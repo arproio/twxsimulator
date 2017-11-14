@@ -16,6 +16,7 @@ import com.thingworx.communications.client.ConnectedThingClient;
 import com.thingworx.communications.client.things.VirtualThing;
 import com.thingworx.metadata.annotations.ThingworxPropertyDefinition;
 import com.thingworx.metadata.annotations.ThingworxPropertyDefinitions;
+import com.thingworx.types.primitives.IntegerPrimitive;
 
 @ThingworxPropertyDefinitions(properties = {
 		@ThingworxPropertyDefinition(name="param_chambernumber", description="param_chambernumber", baseType="INTEGER", aspects={ "dataChangeType:VALUE", "dataChangeThreshold:0", "cacheTime:0",
@@ -138,6 +139,9 @@ public class SimulatedVR86001X extends VirtualThing implements Runnable
 	private String[] booleanProperties={};
 	private ArrayList<String> booleanArray = new ArrayList<String>();
 	private Dictionary<String, Boolean> booleanValue = new Hashtable<String, Boolean>();
+	private int[] other_states = {2,3,4,5,8,32};
+    private int current_state = 1;
+    
 	
 	public SimulatedVR86001X(String name, String description, ConnectedThingClient client) throws Exception
 	{
@@ -262,7 +266,19 @@ public class SimulatedVR86001X extends VirtualThing implements Runnable
 		if(Math.random() <= 0.95) super.setProperty("param_productcount", param_productcount++);
 		if(Math.random() <= 0.1 /*0.1*/) super.setProperty("param_speedCPM", ThreadLocalRandom.current().nextDouble(0,60));
 		
-		if(Math.random() <= 0.1 /*0.10*/) super.setProperty("state_all", states[rand.nextInt(states.length)]);
+		if(Math.random()>0.1){
+ 			if(current_state != 1){
+ 				super.setProperty("state_all", new IntegerPrimitive(1));
+ 				current_state = 1;
+ 			}
+ 		}else{
+ 			int randomSelect = ThreadLocalRandom.current().nextInt(other_states.length-1);
+ 			if(current_state != other_states[randomSelect]){
+ 				current_state = other_states[randomSelect];
+ 				super.setProperty("state_all", new IntegerPrimitive(current_state));
+ 			}
+ 		}
+ 		
 		
 		for(String booleanProperty : booleanArray){
 			setBooleanTypeProperty(booleanProperty);

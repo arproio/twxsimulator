@@ -7,9 +7,9 @@
     "ThingNamePrefix": "VR86001X_Simulated_",
 	"StartDeviceNumber": 1,
 	"EndDeviceNumber": 5,
-	"ScanRate": 10000,
+	"ScanRate": 2000,
 	"ValueStream":"VS_VR8600-1X",
 	"className":"com.ptc.techsales.edge.SimulatedVR86001X",
-    "param_lifetimecycles": 1,
-    "param_productcount": 1
+    "param_lifetimecycles": 95529,
+    "param_productcount": 95477
 }

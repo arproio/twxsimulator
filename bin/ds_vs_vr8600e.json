@@ -1,8 +1,8 @@
 {
-    "ServerLocation": "device1-dev.digital.sealedair.com",
+    "ServerLocation": "gateway.desheng.io",
     "Port": 443,
     "Security": true,
-    "AppKey": "8212ffee-837f-4035-904e-ad5e93fdaab1",
+    "AppKey": "4532513e-e50c-4de6-b68b-c0f3223efc60",
     "ThingTemplate": "TT_VS_RTTFT_VR8600E_V_0_0_1",
     "ThingNamePrefix": "VR8600E_Simulated_",
 	"StartDeviceNumber": 1,
@@ -10,6 +10,6 @@
 	"ScanRate": 10000,
 	"ValueStream":"VS_VR8600-E",
 	"className":"com.ptc.techsales.edge.SimulatedVR8600E",
-    "param_lifetimecycle": 91189,
-    "param_productcount": 91324
+    "param_lifetimecycle": 52289,
+    "param_productcount": 52288
 }

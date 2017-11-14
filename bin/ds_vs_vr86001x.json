@@ -1,8 +1,8 @@
 {
-    "ServerLocation": "device1-qa.digital.sealedair.com",
+    "ServerLocation": "gateway.desheng.io",
     "Port": 443,
     "Security": true,
-    "AppKey": "c7f4a64e-56cd-46ec-9582-d338a647f3c3",
+    "AppKey": "4532513e-e50c-4de6-b68b-c0f3223efc60",
     "ThingTemplate": "TT_VS_RTTFT_VR86001X",
     "ThingNamePrefix": "VR86001X_Simulated_",
 	"StartDeviceNumber": 1,
@@ -10,6 +10,6 @@
 	"ScanRate": 10000,
 	"ValueStream":"VS_VR8600-1X",
 	"className":"com.ptc.techsales.edge.SimulatedVR86001X",
-    "param_lifetimecycles": 1,
-    "param_productcount": 1
+    "param_lifetimecycles": 90594,
+    "param_productcount": 84788
 }

@@ -72,8 +72,8 @@ public class SimulatedVR8600E extends VirtualThing implements Runnable{
     private int param_lifetimecycle = 1;
     private double param_speedcpm = 0.0;
     private int param_productcount = 1;
-    private int state_all = 1;
-    private int[] states = {1,2,3,4,5,8,32};
+    private int[] other_states = {2,3,4,5,8,32};
+    private int current_state = 1;
     
     /**
      * A custom constructor. We implement this so we can call initializeFromAnnotations, which
@@ -97,6 +97,7 @@ public class SimulatedVR8600E extends VirtualThing implements Runnable{
 
         super(name, description, client);
         this.initializeFromAnnotations();
+        this.setPropertyValue("state_all", new IntegerPrimitive(1));
         
         Object obj = json.get("param_productcount");
 		if (obj != null)
@@ -147,7 +148,20 @@ public class SimulatedVR8600E extends VirtualThing implements Runnable{
  		if(Math.random() <= 0.95) super.setProperty("param_productcount", param_productcount++);
  		if(Math.random() <= 0.95) super.setProperty("param_lifetimecycle", param_lifetimecycle++);
  		if(Math.random() <= 0.10) super.setProperty("param_speedcpm", ThreadLocalRandom.current().nextDouble(0,40));
- 		if(Math.random() <= 0.10) super.setProperty("state_all", states[rand.nextInt(states.length)]);
+ 		
+ 		if(Math.random()>0.1){
+ 			if(current_state != 1){
+ 				super.setProperty("state_all", new IntegerPrimitive(1));
+ 				current_state = 1;
+ 			}
+ 		}else{
+ 			int randomSelect = ThreadLocalRandom.current().nextInt(other_states.length-1);
+ 			if(current_state != other_states[randomSelect]){
+ 				current_state = other_states[randomSelect];
+ 				super.setProperty("state_all", new IntegerPrimitive(current_state));
+ 			}
+ 		}
+ 		
  		
  		
  		if(Math.random() <= 0.05 /*0.05*/){

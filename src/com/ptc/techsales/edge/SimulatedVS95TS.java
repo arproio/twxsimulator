@@ -324,10 +324,15 @@ public class SimulatedVS95TS extends VirtualThing implements Runnable
 	private int param_lifetimecycles = 1;
 	private int param_vaccycletime = 1;
 	private int param_chambernumber = 1 + rand.nextInt(7);
+	private String state_run = "state_run";
+	private boolean state_run_value = true;
+	private Dictionary<String, Boolean> booleanPropertiesValue = new Hashtable<String, Boolean>();
+	
 	private String[] booleanProperties={"state_alarm","state_cleaning","state_downstreamRTR","state_leaktest",
-			"state_maintenance","state_plcup","state_preemptivetest","state_production","state_run","state_stop",
+			"state_maintenance","state_plcup","state_preemptivetest","state_production","state_stop",
 			"state_upstreamRTS"
 	};
+	
 	private ArrayList<String> booleanArray = new ArrayList<String>();
 	private Dictionary<String, Boolean> booleanValue = new Hashtable<String, Boolean>();
 	
@@ -341,6 +346,7 @@ public class SimulatedVS95TS extends VirtualThing implements Runnable
 		buildUpDatashapes();
 		try {
             this.setPropertyValue("recipe_vactarget", new IntegerPrimitive(600));
+            this.setPropertyValue(state_run, new BooleanPrimitive(true));
         } catch (Exception e) {
             logger.warn("Could not ser default value for recipe_vactarget");
         }
@@ -380,6 +386,11 @@ public class SimulatedVS95TS extends VirtualThing implements Runnable
 		buildUpDatashapes();
 		try {
             this.setPropertyValue("recipe_vactarget", new IntegerPrimitive(600));
+            this.setPropertyValue(state_run, new BooleanPrimitive(true));
+            
+            for(int i=0;i<booleanProperties.length;i++){
+            	this.setPropertyValue(booleanProperties[i], new BooleanPrimitive(false));
+    		}
         } catch (Exception e) {
             logger.warn("Could not ser default value for recipe_vactarget");
         }
@@ -400,11 +411,12 @@ public class SimulatedVS95TS extends VirtualThing implements Runnable
 			booleanArray.add("alarm_"+i);
 		}
 		
-		for(int i=0;i<booleanProperties.length;i++){
-			booleanArray.add(booleanProperties[i]);
-		}
 		for(String property:booleanArray){
 			booleanValue.put(property, Boolean.FALSE);
+		}
+		
+		for(int i=0;i<booleanProperties.length;i++){
+			booleanPropertiesValue.put(booleanProperties[i], Boolean.FALSE);
 		}
 	}
 	
@@ -442,6 +454,114 @@ public class SimulatedVS95TS extends VirtualThing implements Runnable
 		for(String booleanProperty : booleanArray){
 			setBooleanTypeProperty(booleanProperty);
 		}
+		
+		if(Math.random()>0.05){
+			if(!state_run_value){
+				state_run_value = true;
+				super.setProperty(state_run, new BooleanPrimitive(true));
+				for(int i=0;i<booleanProperties.length;i++){
+					if(booleanPropertiesValue.get(booleanProperties[i]).booleanValue()){
+						booleanPropertiesValue.put(booleanProperties[i], Boolean.FALSE);
+						super.setProperty(booleanProperties[i], new BooleanPrimitive(false));
+					}
+					
+				}
+			}
+		}else{
+			if(state_run_value){
+				state_run_value = false;
+				super.setProperty(state_run, new BooleanPrimitive(false));
+			}
+			int randomSelect = ThreadLocalRandom.current().nextInt(booleanProperties.length-1);
+			for(int i=0;i<booleanProperties.length;i++){
+				if(i==randomSelect){
+					if(!booleanPropertiesValue.get(booleanProperties[i]).booleanValue()){
+						booleanPropertiesValue.put(booleanProperties[i], Boolean.TRUE);
+						super.setProperty(booleanProperties[i], new BooleanPrimitive(true));
+					}
+				}else{
+					if(booleanPropertiesValue.get(booleanProperties[i]).booleanValue()){
+						booleanPropertiesValue.put(booleanProperties[i], Boolean.FALSE);
+						super.setProperty(booleanProperties[i], new BooleanPrimitive(false));
+					}
+				}
+			}
+		}
+		/*
+		for (int i = 1; i <= 9; i ++) {
+			if(Math.random() > 0.05 ){
+				super.setProperty("alarm_0" + i, 0);
+			}else{
+				super.setProperty("alarm_0" + i, 1);
+			}
+		}
+		
+		for (int i = 10; i <= 64; i ++) {
+			if(Math.random() > 0.05 ){
+				super.setProperty("alarm_" + i, 0);
+			}else{
+				super.setProperty("alarm_" + i, 1);
+			}
+		}
+
+		
+		
+		if(Math.random()> 0.05){
+			super.setProperty("state_alarm", 0);
+		}else{
+			super.setProperty("state_alarm", 1);
+		}
+		if(Math.random()> 0.05){
+			super.setProperty("state_cleaning", 0);
+		}else{
+			super.setProperty("state_cleaning", 1);
+		}
+		if(Math.random()> 0.05){
+			super.setProperty("state_downstreamRTR", 0);
+		}else{
+			super.setProperty("state_downstreamRTR", 1);
+		}
+		if(Math.random()> 0.05){
+			super.setProperty("state_leaktest", 0);
+		}else{
+			super.setProperty("state_leaktest", 1);
+		}
+		if(Math.random()> 0.05){
+			super.setProperty("state_maintenance", 0);
+		}else{
+			super.setProperty("state_maintenance", 1);
+		}
+		if(Math.random()> 0.05){
+			super.setProperty("state_plcup", 0);
+		}else{
+			super.setProperty("state_plcup", 1);
+		}
+		if(Math.random()> 0.05){
+			super.setProperty("state_preemptivetest", 0);
+		}else{
+			super.setProperty("state_preemptivetest", 1);
+		}
+		if(Math.random()> 0.05){
+			super.setProperty("state_production", 0);
+		}else{
+			super.setProperty("state_production", 1);
+		}
+		if(Math.random()> 0.05){
+			super.setProperty("state_run", 0);
+		}else{
+			super.setProperty("state_run", 1);
+		}
+		if(Math.random()> 0.05){
+			super.setProperty("state_stop", 0);
+		}else{
+			super.setProperty("state_stop", 1);
+		}
+		if(Math.random()> 0.05){
+			super.setProperty("state_upstreamRTS", 0);
+		}else{
+			super.setProperty("state_upstreamRTS", 1);
+		}*/
+
 		
 		logger.debug("Updating properties for thing " + getName());
 		// Update the subscribed properties to send any updates to Thingworx

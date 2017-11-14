@@ -7,10 +7,10 @@
 	</appender>
 
 	<appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>SASimulator_VPP.log</file>
+		<file>/ThingworxClient/JavaClientSDK.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 		  <!-- rollover daily -->
-		  <fileNamePattern>SASimulator-%d.%i.log</fileNamePattern>
+		  <fileNamePattern>/ThingworxClient/JavaClientSDK-%d.%i.log</fileNamePattern>
 		  <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 			<!-- or whenever the file size reaches 100MB -->
 			<maxFileSize>100MB</maxFileSize>
